@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import Bookings from "@/components/Bookings/Bookings.jsx";
 import "./App.scss";
 import AppHeader from "../AppHeader/AppHeader";

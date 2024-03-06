@@ -13,7 +13,11 @@ function SearchResults({ results }) {
         <td>{item.checkInDate}</td>
         <td>{item.checkOutDate}</td>
         <td>
-           <CalculationDuration
+          <CalculationDuration
+            checkOut={item.checkOutDate}
+            checkIn={item.checkInDate}
+          />
+        </td>
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />

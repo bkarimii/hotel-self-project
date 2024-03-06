@@ -8,9 +8,3 @@ const CalculationDuration = ({ checkOut, checkIn }) => {
 };
 
 export default CalculationDuration;
-
-// import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
-//  <CalculationDuration
-//    checkOut={item.checkOutDate}
-//    checkIn={item.checkInDate}
-//  />;

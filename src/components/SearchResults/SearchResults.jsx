@@ -15,21 +15,12 @@ function SearchResults({ results }) {
         <td>{item.roomId}</td>
         <td>{item.checkInDate}</td>
         <td>{item.checkOutDate}</td>
-// <<<<<<< feature/calc-duration
-//         <td>
-//           <CalculationDuration
-//             checkOut={item.checkOutDate}
-//             checkIn={item.checkInDate}
-//           />
-//           ;
-//         </td>
-// =======
-// >>>>>>> main
-      
-      <CalculationDuration
+        <td>
+           <CalculationDuration
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />
+        </td>
       </tr>
     );
   });

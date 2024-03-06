@@ -1,7 +1,4 @@
 import React from "react";
-// <<<<<<< feature/calc-duration
-// import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
-// >>>>>>> main
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {

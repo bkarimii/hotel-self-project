@@ -2,7 +2,7 @@ import React from "react";
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {
     return (
-      <tr>
+      <tr key={item.id}>
         <td>{item.id}</td>
         <td>{item.title}</td>
         <td>{item.firstName}</td>

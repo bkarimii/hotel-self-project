@@ -7,6 +7,8 @@ const Restaurant = () => {
       <h3 className="restaurant__heading">Restaurant Orders</h3>
       <ul className="restaurant__list">
         <Order />
+        <Order orderType="Salad" />
+        <Order orderType="Chocolate" />
       </ul>
     </section>
   );

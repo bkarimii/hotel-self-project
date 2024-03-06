@@ -1,16 +1,19 @@
 import React from "react";
 function SearchResults({ results }) {
-  // const tableRow = results.map((item) => {
-  //   <tr>
-  //     <td>{item.id}</td>
-  //     <td>{item.title}</td>
-  //     <td>{item.firstName}</td>
-  //     <td>{item.lastName}</td>
-  //     <td>{item.roodId}</td>
-  //     <td>{item.checkInDate}</td>
-  //     <td>{item.checkOutDate}</td>
-  //   </tr>;
-  // });
+  const tableRow = results.map((item) => {
+    return (
+      <tr>
+        <td>{item.id}</td>
+        <td>{item.title}</td>
+        <td>{item.firstName}</td>
+        <td>{item.surname}</td>
+        <td>{item.email}</td>
+        <td>{item.roomId}</td>
+        <td>{item.checkInDate}</td>
+        <td>{item.checkOutDate}</td>
+      </tr>
+    );
+  });
 
   return (
     <>
@@ -25,20 +28,7 @@ function SearchResults({ results }) {
           <th>Check in Date</th>
           <th>Check out Date</th>
         </tr>
-        {results.map((item) => {
-          return (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.title}</td>
-              <td>{item.firstName}</td>
-              <td>{item.surname}</td>
-              <td>{item.email}</td>
-              <td>{item.roomId}</td>
-              <td>{item.checkInDate}</td>
-              <td>{item.checkOutDate}</td>
-            </tr>
-          );
-        })}
+        {tableRow}
       </table>
     </>
   );

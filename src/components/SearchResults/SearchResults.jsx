@@ -18,10 +18,6 @@ function SearchResults({ results }) {
             checkIn={item.checkInDate}
           />
         </td>
-            checkOut={item.checkOutDate}
-            checkIn={item.checkInDate}
-          />
-        </td>
       </tr>
     );
   });

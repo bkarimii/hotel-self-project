@@ -4,6 +4,7 @@ import "./App.scss";
 import AppHeader from "../AppHeader/AppHeader";
 import Deck from "../Deck/Deck";
 import Footer from "../Footer/Footer";
+import Restaurant from "../Restaurant/Restaurant";
 
 const App = () => {
   const footerArray = [
@@ -17,6 +18,7 @@ const App = () => {
       <AppHeader />
       <Deck />
       <Bookings />
+      <Restaurant />
       <Footer data={footerArray} />
     </div>
   );

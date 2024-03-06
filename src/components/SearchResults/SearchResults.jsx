@@ -1,6 +1,8 @@
 import React from "react";
+// <<<<<<< feature/calc-duration
+// import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
+// >>>>>>> main
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
-
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {
     return (
@@ -13,13 +15,21 @@ function SearchResults({ results }) {
         <td>{item.roomId}</td>
         <td>{item.checkInDate}</td>
         <td>{item.checkOutDate}</td>
-        <td>
-          <CalculationDuration
+// <<<<<<< feature/calc-duration
+//         <td>
+//           <CalculationDuration
+//             checkOut={item.checkOutDate}
+//             checkIn={item.checkInDate}
+//           />
+//           ;
+//         </td>
+// =======
+// >>>>>>> main
+      
+      <CalculationDuration
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />
-          ;
-        </td>
       </tr>
     );
   });

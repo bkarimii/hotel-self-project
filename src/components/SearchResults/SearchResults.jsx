@@ -42,18 +42,20 @@ function SearchResults({ results }) {
   return (
     <>
       <table className="table table-bordered">
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Room Id</th>
-          <th>Check in Date</th>
-          <th>Check out Date</th>
-          <th>Reserved for /nights</th>
-        </tr>
-        {tableRow}
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Room Id</th>
+            <th>Check in Date</th>
+            <th>Check out Date</th>
+            <th>Reserved for /nights</th>
+          </tr>
+        </thead>
+        <tbody>{tableRow}</tbody>
       </table>
     </>
   );

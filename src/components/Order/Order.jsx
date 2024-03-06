@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Order = () => {
+const Order = ({ orderType = "Pizza" }) => {
   const [order, setOrder] = useState(0);
 
   const orderOne = () => {
@@ -9,7 +9,7 @@ const Order = () => {
   return (
     <>
       <li className="restaurant__item">
-        Pizzas: {order}{" "}
+        {orderType}: {order}{" "}
         <button className="button restaurant__button" onClick={orderOne}>
           Add
         </button>

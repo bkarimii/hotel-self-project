@@ -4,6 +4,7 @@ import "./App.scss";
 import AppHeader from "../AppHeader/AppHeader";
 import Deck from "../Deck/Deck";
 import Footer from "../Footer/Footer";
+import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
 
 const App = () => {
   const footerArray = [

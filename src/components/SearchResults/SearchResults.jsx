@@ -3,7 +3,7 @@ import CalculationDuration from "@/components/CalculationDuration/CalculationDur
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {
     return (
-      <tr>
+      <tr key={item.id}>
         <td>{item.id}</td>
         <td>{item.title}</td>
         <td>{item.firstName}</td>
@@ -14,6 +14,10 @@ function SearchResults({ results }) {
         <td>{item.checkOutDate}</td>
         <td>
           <CalculationDuration
+            checkOut={item.checkOutDate}
+            checkIn={item.checkInDate}
+          />
+        </td>
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />
@@ -34,6 +38,7 @@ function SearchResults({ results }) {
           <th>Room Id</th>
           <th>Check in Date</th>
           <th>Check out Date</th>
+          <th>Reserved for /nights</th>
         </tr>
         {tableRow}
       </table>

@@ -34,6 +34,7 @@ function SearchResults({ results }) {
           <th>Room Id</th>
           <th>Check in Date</th>
           <th>Check out Date</th>
+          <th>Reserved for /nights</th>
         </tr>
         {tableRow}
       </table>

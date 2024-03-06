@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
+import "./SearchResult.scss";
+
 function SearchResults({ results }) {
-  const tableRow = results.map((item) => {
+  const [clickOnRow, setClickOnRow] = useState(
+    Array(results.length).fill(false)
+  );
+  const handleClickOnRow = (index) => {
+    setClickOnRow((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  const tableRow = results.map((item, index) => {
     return (
-      <tr key={item.id}>
+      <tr
+        key={item.id}
+        onClick={() => handleClickOnRow(index)}
+        className={clickOnRow[index] ? "clickedOnRow" : ""}
+      >
         <td>{item.id}</td>
         <td>{item.title}</td>
         <td>{item.firstName}</td>
@@ -25,18 +42,20 @@ function SearchResults({ results }) {
   return (
     <>
       <table className="table table-bordered">
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Room Id</th>
-          <th>Check in Date</th>
-          <th>Check out Date</th>
-          <th>Reserved for /nights</th>
-        </tr>
-        {tableRow}
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Room Id</th>
+            <th>Check in Date</th>
+            <th>Check out Date</th>
+            <th>Reserved for /nights</th>
+          </tr>
+        </thead>
+        <tbody>{tableRow}</tbody>
       </table>
     </>
   );

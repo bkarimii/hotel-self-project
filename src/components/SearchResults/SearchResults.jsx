@@ -1,5 +1,4 @@
 import React from "react";
-import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
 
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {
@@ -13,12 +12,7 @@ function SearchResults({ results }) {
         <td>{item.roomId}</td>
         <td>{item.checkInDate}</td>
         <td>{item.checkOutDate}</td>
-        <td>
-          <CalculationDuration
-            checkOut={item.checkOutDate}
-            checkIn={item.checkInDate}
-          />
-        </td>
+        <td></td>
       </tr>
     );
   });

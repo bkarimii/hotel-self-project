@@ -1,5 +1,6 @@
 import React from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
+import CustomerProfile from "../../CustomerProfile/CustomerProfile";
 function SearchResults({ results }) {
   const tableRow = results.map((item) => {
     return (
@@ -17,6 +18,9 @@ function SearchResults({ results }) {
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />
+        </td>
+        <td>
+          <CustomerProfile />
         </td>
       </tr>
     );

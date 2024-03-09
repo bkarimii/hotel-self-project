@@ -1,15 +1,13 @@
-
 import { React, useState } from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
-import CustomerProfile from "../../CustomerProfile/CustomerProfile";
+import CustomerProfile from "../CustomerProfile/CustomerProfile";
 import "./SearchResult.scss";
 
 function SearchResults({ results }) {
-  
   const [clickOnRow, setClickOnRow] = useState(
     Array(results.length).fill(false)
   );
-  
+
   const [selectedCustomerId, setSelectedCustomerId] = useState(null);
 
   const handleClickSelectedCustomer = (id) => {
@@ -25,7 +23,7 @@ function SearchResults({ results }) {
       return newState;
     });
   };
-  
+
   const tableRow = results.map((item) => {
     return (
       <tr
@@ -61,21 +59,19 @@ function SearchResults({ results }) {
     <>
       <table className="table table-bordered">
         <thead>
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Room Id</th>
-          <th>Check in Date</th>
-          <th>Check out Date</th>
-          <th>Reserved for /nights</th>
-        </tr>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Room Id</th>
+            <th>Check in Date</th>
+            <th>Check out Date</th>
+            <th>Reserved for /nights</th>
+          </tr>
         </thead>
-        <tbody>
-          {tableRow}
-        </tbody>
+        <tbody>{tableRow}</tbody>
       </table>
       <CustomerProfile id={selectedCustomerId} />
     </>

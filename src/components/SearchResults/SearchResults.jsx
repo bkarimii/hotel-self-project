@@ -18,6 +18,7 @@ function SearchResults({ results }) {
   return (
     <>
       <table className="table table-bordered">
+        <thead>
         <tr>
           <th>Id</th>
           <th>Title</th>
@@ -29,7 +30,11 @@ function SearchResults({ results }) {
           <th>Check out Date</th>
           <th>Reserved for /nights</th>
         </tr>
-        {tableRow}
+        </thead>
+        <tbody>
+          {tableRow}
+        </tbody>
+        
       </table>
     </>
   );

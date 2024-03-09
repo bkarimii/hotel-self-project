@@ -1,7 +1,15 @@
-import React from "react";
+import { React, useState } from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
 import CustomerProfile from "../../CustomerProfile/CustomerProfile";
 function SearchResults({ results }) {
+  const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+
+  const handleClickSelectedCustomer = (id) => {
+    return setSelectedCustomerId((customerId) => {
+      return id;
+    });
+  };
+
   const tableRow = results.map((item) => {
     return (
       <tr key={item.id}>
@@ -20,7 +28,9 @@ function SearchResults({ results }) {
           />
         </td>
         <td>
-          <CustomerProfile />
+          <button onClick={() => handleClickSelectedCustomer(item.id)}>
+            Show Profile
+          </button>
         </td>
       </tr>
     );
@@ -42,6 +52,7 @@ function SearchResults({ results }) {
         </tr>
         {tableRow}
       </table>
+      <CustomerProfile id={selectedCustomerId} />
     </>
   );
 }

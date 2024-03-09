@@ -1,11 +1,7 @@
 import React from "react";
 
 const CustomerProfile = ({ id }) => {
-  const displaText = () => {
-    console.log("hi there!");
-  };
-
-  return <button onClick={displaText}>Show Profile</button>;
+  return <>{id && <div>Customer {id} profile !</div>}</>;
 };
 
 export default CustomerProfile;

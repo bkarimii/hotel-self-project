@@ -19,7 +19,8 @@ function SearchResults({ results }) {
       <tr
         key={item.id}
         onClick={() => handleClickOnRow(index)}
-        className={clickOnRow[index] ? "clickedOnRow" : ""}
+        // style={clickOnRow[index] ? { backgroundColor: "rgb(107, 4, 225)" } : {}}
+        className={clickOnRow[index] ? "clicked-on-row" : ""}
       >
         <td>{item.id}</td>
         <td>{item.title}</td>

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+
+import { React, useState } from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
+import CustomerProfile from "../../CustomerProfile/CustomerProfile";
 import "./SearchResult.scss";
 
 function SearchResults({ results }) {
+  
   const [clickOnRow, setClickOnRow] = useState(
     Array(results.length).fill(false)
   );
+  
+  const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+
+  const handleClickSelectedCustomer = (id) => {
+    return setSelectedCustomerId((customerId) => {
+      return id;
+    });
+  };
+
   const handleClickOnRow = (index) => {
     setClickOnRow((prevState) => {
       const newState = [...prevState];
@@ -13,8 +25,8 @@ function SearchResults({ results }) {
       return newState;
     });
   };
-
-  const tableRow = results.map((item, index) => {
+  
+  const tableRow = results.map((item) => {
     return (
       <tr
         key={item.id}
@@ -35,6 +47,11 @@ function SearchResults({ results }) {
             checkOut={item.checkOutDate}
             checkIn={item.checkInDate}
           />
+        </td>
+        <td>
+          <button onClick={() => handleClickSelectedCustomer(item.id)}>
+            Show Profile
+          </button>
         </td>
       </tr>
     );
@@ -60,6 +77,7 @@ function SearchResults({ results }) {
           {tableRow}
         </tbody>
       </table>
+      <CustomerProfile id={selectedCustomerId} />
     </>
   );
 }

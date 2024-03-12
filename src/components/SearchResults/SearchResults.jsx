@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import CalculationDuration from "@/components/CalculationDuration/CalculationDuration.jsx";
 import CustomerProfile from "../CustomerProfile/CustomerProfile";
 import "./SearchResult.scss";
+import AddBooking from "../AddBooking/AddBooking";
 
 function SearchResults({ results }) {
   const [clickOnRow, setClickOnRow] = useState(
@@ -24,7 +25,7 @@ function SearchResults({ results }) {
     });
   };
 
-  const tableRow = results.map((item,index) => {
+  const tableRow = results.map((item, index) => {
     return (
       <tr
         key={item.id}

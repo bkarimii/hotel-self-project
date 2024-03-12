@@ -5,7 +5,7 @@ import AppHeader from "../AppHeader/AppHeader";
 import Deck from "../Deck/Deck";
 import Footer from "../Footer/Footer";
 import Restaurant from "../Restaurant/Restaurant";
-
+import AddBooking from "../AddBooking/AddBooking";
 const App = () => {
   const footerArray = [
     "123 Fake Street, London, E1 4UD",
@@ -19,6 +19,7 @@ const App = () => {
       <Deck />
       <Bookings />
       <Restaurant />
+      <AddBooking />
       <Footer data={footerArray} />
     </div>
   );

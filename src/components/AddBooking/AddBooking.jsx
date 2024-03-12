@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddBooking.scss";
 
+// this component is not completed yet
 function AddBooking() {
   const [formData, setFormData] = useState({
     id: "",

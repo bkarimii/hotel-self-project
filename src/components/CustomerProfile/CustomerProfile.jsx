@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 const CustomerProfile = ({ id }) => {
-  const link = `https://cyf-react.glitch.me/customers/<${id}>`;
+  const link = `https://phrygian-cheddar-antler.glitch.me`;
   const [customerData, setCustomerData] = useState(null);
   useEffect(() => {
     fetch(link)
@@ -12,7 +12,7 @@ const CustomerProfile = ({ id }) => {
         return response.json();
       })
       .then((data) => {
-        console.log(response.json(), "this is responce");
+        console.log(data, "this is responce");
         return setCustomerData(data);
       })
       .catch((error) => {

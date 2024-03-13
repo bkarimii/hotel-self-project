@@ -22,7 +22,7 @@ const CustomerProfile = ({ id }) => {
   console.log(customerData, "<-----this is customer data", `for id ${id}`);
   return (
     <>
-      <p>hi there//////////////!</p>
+      <p>hi there customer {id}!</p>
     </>
   );
 };

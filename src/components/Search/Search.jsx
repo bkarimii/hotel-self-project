@@ -28,7 +28,10 @@ const Search = (props) => {
             className="search__input"
             placeholder="Customer name"
             value={searchInput}
-            onChange={handleInput}
+            onChange={(e) => {
+              handleInput(e);
+              console.log(searchInput);
+            }}
           />
           <SearchButon />
         </form>

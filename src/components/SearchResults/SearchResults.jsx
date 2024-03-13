@@ -24,7 +24,7 @@ function SearchResults({ results }) {
     });
   };
 
-  const tableRow = results.map((item,index) => {
+  const tableRow = results.map((item, index) => {
     return (
       <tr
         key={item.id}

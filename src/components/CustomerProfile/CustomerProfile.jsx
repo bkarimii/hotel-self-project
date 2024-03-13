@@ -12,7 +12,7 @@ const CustomerProfile = ({ id }) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data, "this is responce");
+        // console.log(data, "this is responce");
         return setCustomerData(data);
       })
       .catch((error) => {

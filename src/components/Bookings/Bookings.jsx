@@ -6,6 +6,19 @@ import { useEffect, useState } from "react";
 
 const Bookings = () => {
   const [bookings, setBooking] = useState([]);
+  const [newBook, setNewBook] = useState({
+    id: null,
+    title: "",
+    firstName: "",
+    surname: "",
+    email: "",
+    roomId: null,
+    checkInDate: "",
+    checkOutDate: "",
+  });
+
+  const addNewBook = () => {};
+
   const search = (searchVal) => {
     setBooking(
       FakeBookings.filter((person) => {

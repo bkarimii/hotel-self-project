@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import "./Bookings.scss";
 
 const Bookings = () => {
-  const [bookings, setBooking] = useState([]);
+  const [currentDate, setCurrentDate] = useState("");
+  const [bookings, setBooking] = useState(fakeBookings);
   const [newBook, setNewBook] = useState({
     id: "",
     title: "",
@@ -18,14 +19,57 @@ const Bookings = () => {
     checkOutDate: "",
   });
 
+  const addBooking = (newElement) => {
+    setBooking([...bookings, newElement]);
+  };
+
   const handleInput = (e) => {
     const { id, value } = e.target;
     setNewBook({ ...newBook, [id]: value });
   };
   const addNewBook = (e) => {
     e.preventDefault();
-    setBooking(...bookings, newBook);
-    console.log(newBook, "<------this is newbooking array");
+    // check if a specific room is already taken
+    const hasTheRoomBooked = bookings.some(
+      (book) => book.roomId === newBook.roomId
+    );
+    if (hasTheRoomBooked) {
+      alert("This room is already Booked!");
+      return;
+    }
+
+    //check feilds if they all are filled
+    // Check if any of the required fields are empty
+    const requiredFields = [
+      "firstName",
+      "surname",
+      "email",
+      "roomId",
+      "checkInDate",
+      "checkOutDate",
+    ];
+    const checkTheFields = requiredFields.some((feild) => !newBook[feild]);
+    if (checkTheFields) {
+      alert("Please fill all the fields!");
+      return;
+    }
+
+    //setBooking([...bookings, newBook]);
+    const newId = Math.max(...bookings.map((booking) => booking.id), 0) + 1; // add a new Id for each new customer by finding the last id and adding 1 to it
+    setNewBook({ ...newBook, id: newId });
+    const updatedBooking = { ...newBook, id: newId }; // adding id to the newBook (customer is being add through the form)
+    addBooking(updatedBooking);
+
+    setNewBook({
+      id: "",
+      title: "",
+      firstName: "",
+      surname: "",
+      email: "",
+      roomId: "",
+      checkInDate: "",
+      checkOutDate: "",
+    });
   };
 
   const search = (searchVal) => {
@@ -39,7 +83,13 @@ const Bookings = () => {
     );
     console.info("TO DO!", searchVal);
   };
+
   useEffect(() => {
+    const date = new Date();
+    const formattedDate = `${date.getFullYear()}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    setCurrentDate(formattedDate);
     setBooking(fakeBookings);
     // const linkToFetch = "https://phrygian-cheddar-antler.glitch.me";
     // fetch(linkToFetch)
@@ -52,7 +102,6 @@ const Bookings = () => {
     //   .then((data) => {
     //     setBooking(data);
     //   });
-    console.log("hi there i'm inside a useEffect hook");
   }, []);
   return (
     <main className="bookings">
@@ -62,7 +111,7 @@ const Bookings = () => {
             addNewBook(e);
           }}
         >
-          <label htmlFor="id">ID</label>
+          {/* <label htmlFor="id">ID</label>
           <input
             type="number"
             id="id"
@@ -70,7 +119,7 @@ const Bookings = () => {
               handleInput(e);
             }}
             value={newBook.id}
-          ></input>
+          ></input> */}
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -118,7 +167,8 @@ const Bookings = () => {
           ></input>
           <label htmlFor="checkInDate">CheckIn Date</label>
           <input
-            type="text"
+            type="date"
+            min={currentDate}
             id="checkInDate"
             onChange={(e) => {
               handleInput(e);
@@ -127,7 +177,7 @@ const Bookings = () => {
           ></input>
           <label htmlFor="checkOutDate">CheckOut Date</label>
           <input
-            type="text"
+            type="date"
             id="checkOutDate"
             onChange={(e) => {
               handleInput(e);

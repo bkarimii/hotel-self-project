@@ -3,11 +3,14 @@ import Search from "@/components/Search/Search";
 import fakeBookings from "@/data/fakeBookings.json";
 import SearchResults from "../SearchResults/SearchResults";
 import { useEffect, useState } from "react";
+import ErrorForfetch from "../../ErrorForFetch/ErrorForFetch";
 import "./Bookings.scss";
 
 const Bookings = () => {
   const [currentDate, setCurrentDate] = useState("");
-  const [bookings, setBooking] = useState(fakeBookings);
+  // const [bookings, setBooking] = useState(fakeBookings);
+  const [bookings, setBooking] = useState([]);
+  const [fetchError, setFetchError] = useState(false);
   const [newBook, setNewBook] = useState({
     id: "",
     title: "",
@@ -91,21 +94,116 @@ const Bookings = () => {
     ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     setCurrentDate(formattedDate);
     setBooking(fakeBookings);
-    // const linkToFetch = "https://phrygian-cheddar-antler.glitch.me";
-    // fetch(linkToFetch)
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       console.error("fetch wasn't document, an error happened");
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     setBooking(data);
-    //   });
+    const linkToFetch = "https://phrygian-cheddar-antler.glitch.me";
+    const linkForError = "https://cyf-react.glitch.me/error";
+    fetch(linkToFetch)
+      .then((response) => {
+        if (!response.ok) {
+          console.error("fetch wasn't document, an error happened");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBooking(data);
+      })
+      .catch((error) => {
+        console.log("Error Happened while fetching ---------------", error);
+        setFetchError(true);
+      });
   }, []);
   return (
     <main className="bookings">
-      <div className="form-container">
+      {fetchError ? (
+        <ErrorForfetch />
+      ) : (
+        <>
+          <div className="form-container">
+            <form
+              onSubmit={(e) => {
+                addNewBook(e);
+              }}
+            >
+              {/* <label htmlFor="id">ID</label>
+          <input
+            type="number"
+            id="id"
+            onChange={(e) => {
+              handleInput(e);
+            }}
+            value={newBook.id}
+          ></input> */}
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.title}
+              ></input>
+              <label htmlFor="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.firstName}
+              ></input>
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                type="text"
+                id="surname"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.surname}
+              ></input>
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="text"
+                id="email"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.email}
+              ></input>
+              <label htmlFor="room-id">Room ID</label>
+              <input
+                type="text"
+                id="roomId"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.roomId}
+              ></input>
+              <label htmlFor="checkInDate">CheckIn Date</label>
+              <input
+                type="date"
+                min={currentDate}
+                id="checkInDate"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.checkInDate}
+              ></input>
+              <label htmlFor="checkOutDate">CheckOut Date</label>
+              <input
+                type="date"
+                id="checkOutDate"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={newBook.checkOutDate}
+              ></input>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+          <Search search={search} />
+          <SearchResults results={bookings} />
+        </>
+      )}
+      {/* <div className="form-container">
         <form
           onSubmit={(e) => {
             addNewBook(e);
@@ -120,7 +218,7 @@ const Bookings = () => {
             }}
             value={newBook.id}
           ></input> */}
-          <label htmlFor="title">Title</label>
+      {/* <label htmlFor="title">Title</label>
           <input
             type="text"
             id="title"
@@ -188,7 +286,8 @@ const Bookings = () => {
         </form>
       </div>
       <Search search={search} />
-      <SearchResults results={bookings} />
+      <SearchResults results={bookings} /> */}{" "}
+      */
     </main>
   );
 };

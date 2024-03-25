@@ -4,6 +4,7 @@ import fakeBookings from "@/data/fakeBookings.json";
 import SearchResults from "../SearchResults/SearchResults";
 import { useEffect, useState } from "react";
 import ErrorForfetch from "../ErrorForFetch/ErrorForFetch";
+import Modal from "../Modal/Modal";
 import "./Bookings.scss";
 
 const Bookings = () => {
@@ -117,87 +118,93 @@ const Bookings = () => {
   }, []);
   return (
     <main className="bookings">
-      {fetchError ? (
-        <ErrorForfetch />
-      ) : (
-        <>
-          <div className="form-container">
-            <form
-              onSubmit={(e) => {
-                addNewBook(e);
-              }}
-            >
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                id="title"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.title}
-              ></input>
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.firstName}
-              ></input>
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                id="surname"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.surname}
-              ></input>
-              <label htmlFor="email">E-mail</label>
-              <input
-                type="text"
-                id="email"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.email}
-              ></input>
-              <label htmlFor="room-id">Room ID</label>
-              <input
-                type="text"
-                id="roomId"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.roomId}
-              ></input>
-              <label htmlFor="checkInDate">CheckIn Date</label>
-              <input
-                type="date"
-                min={currentDate}
-                id="checkInDate"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.checkInDate}
-              ></input>
-              <label htmlFor="checkOutDate">CheckOut Date</label>
-              <input
-                type="date"
-                id="checkOutDate"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={newBook.checkOutDate}
-              ></input>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-          <Search search={search} />
-          <SearchResults results={bookings} />
-        </>
+      {fetchError && (
+        <Modal
+          isOpen={fetchError}
+          content={"Error happened! pls reload the page or try again later!"}
+          onClose={() => setFetchError(false)}
+        />
       )}
+      {isLoading && (
+        <Modal isOpen={isLoading} content={"Data is loading ..."} />
+      )}
+      <>
+        <div className="form-container">
+          <form
+            onSubmit={(e) => {
+              addNewBook(e);
+            }}
+          >
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.title}
+            ></input>
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.firstName}
+            ></input>
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="surname"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.surname}
+            ></input>
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="text"
+              id="email"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.email}
+            ></input>
+            <label htmlFor="room-id">Room ID</label>
+            <input
+              type="text"
+              id="roomId"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.roomId}
+            ></input>
+            <label htmlFor="checkInDate">CheckIn Date</label>
+            <input
+              type="date"
+              min={currentDate}
+              id="checkInDate"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.checkInDate}
+            ></input>
+            <label htmlFor="checkOutDate">CheckOut Date</label>
+            <input
+              type="date"
+              id="checkOutDate"
+              onChange={(e) => {
+                handleInput(e);
+              }}
+              value={newBook.checkOutDate}
+            ></input>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <Search search={search} />
+        <SearchResults results={bookings} />
+      </>
       {/* <div className="form-container">
         <form
           onSubmit={(e) => {

@@ -3,7 +3,7 @@ import Search from "@/components/Search/Search";
 import fakeBookings from "@/data/fakeBookings.json";
 import SearchResults from "../SearchResults/SearchResults";
 import { useEffect, useState } from "react";
-import ErrorForfetch from "../../ErrorForFetch/ErrorForFetch";
+import ErrorForfetch from "../ErrorForFetch/ErrorForFetch";
 import "./Bookings.scss";
 
 const Bookings = () => {
@@ -11,6 +11,7 @@ const Bookings = () => {
   // const [bookings, setBooking] = useState(fakeBookings);
   const [bookings, setBooking] = useState([]);
   const [fetchError, setFetchError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [newBook, setNewBook] = useState({
     id: "",
     title: "",
@@ -96,6 +97,7 @@ const Bookings = () => {
     setBooking(fakeBookings);
     const linkToFetch = "https://phrygian-cheddar-antler.glitch.me";
     const linkForError = "https://cyf-react.glitch.me/error";
+    setIsLoading(true);
     fetch(linkToFetch)
       .then((response) => {
         if (!response.ok) {
@@ -104,10 +106,12 @@ const Bookings = () => {
         return response.json();
       })
       .then((data) => {
+        setIsLoading(false);
         setBooking(data);
       })
       .catch((error) => {
         console.log("Error Happened while fetching ---------------", error);
+        setIsLoading(false);
         setFetchError(true);
       });
   }, []);
@@ -123,15 +127,6 @@ const Bookings = () => {
                 addNewBook(e);
               }}
             >
-              {/* <label htmlFor="id">ID</label>
-          <input
-            type="number"
-            id="id"
-            onChange={(e) => {
-              handleInput(e);
-            }}
-            value={newBook.id}
-          ></input> */}
               <label htmlFor="title">Title</label>
               <input
                 type="text"
@@ -287,7 +282,6 @@ const Bookings = () => {
       </div>
       <Search search={search} />
       <SearchResults results={bookings} /> */}{" "}
-      */
     </main>
   );
 };
